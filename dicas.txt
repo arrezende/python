@@ -5,3 +5,5 @@ git commit -m 'mensagem' # commit das alterações com mensagem
 
 git reflog #exibe o log das modificacoes
 git checkout -b funcionalidade_x #cria um branch
+git checkout master #Volta para o branch principal
+git merge testebrach #mescla o branch 'testebrach' com o branch principal
