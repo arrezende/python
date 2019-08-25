@@ -1,3 +1,4 @@
+#####
 git init #iniciar repositorio
 git clone https://github.com/arrezende/python.git #clonar um repositorio
 git add 'arquivo' ou git add * #adiciona os arquivos para fazer o commit
@@ -7,3 +8,4 @@ git reflog #exibe o log das modificacoes
 git checkout -b funcionalidade_x #cria um branch
 git checkout master #Volta para o branch principal
 git merge testebrach #mescla o branch 'testebrach' com o branch principal
+git checkout 721de15608fde73ab3fab3492fe3baf453ee0ad8 #volta os arquivos para o commit desejado
