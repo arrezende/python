@@ -94,6 +94,9 @@ def downloadImgGoogle(key):
 			pass
 
 def openCsv(arquivo):
+	arquivoPhp = open('novo-arquivo.php', 'w')
+	arquivoPhp.write(str('<?php \n'))
+
 	with open(arquivo, mode='r') as arquivoCsv:
 		leitorCsv = csv.DictReader(arquivoCsv)
 		contadorDeLinha = 0
@@ -102,16 +105,16 @@ def openCsv(arquivo):
 		for linha in leitorCsv:
 			if contadorDeLinha == 0:
 				contadorDeLinha +=1
-			texto.append(str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION'])))
+			#texto.append(str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION'])))
+			novoTexto = str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION']))
 			contadorDeLinha += 1
-
+			texto = str(texto).strip('[]')
+			arquivoPhp.write(novoTexto)
+			arquivoPhp.write('\n')		
 		print(str('Processado {} linhas').format(contadorDeLinha))
-	texto = str(texto).strip('[]')
-	arquivo = open('novo-arquivo.php', 'w')
-	arquivo.write(str('<?php \n'))
-	arquivo.write(texto[1:-1])
-	arquivo.write(str('\n?>'))
-	arquivo.close()
+	
+	arquivoPhp.write(str('\n?>'))
+	arquivoPhp.close()
 
 def varreUrl(url, tag):
 	
