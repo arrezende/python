@@ -164,7 +164,5 @@ elif escolha == 2:
 	tag = input("Digite a tag: ")
 	varreUrl(url, tag)
 elif escolha == 3:
-	novoNome = str(input('digite o novo nome das imagens: '))
-	extensao = str(input('digite a extensão EX.: ".jpg": '))
 	renomearImg()
 print('Concluído')
