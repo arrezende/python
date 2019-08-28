@@ -5,7 +5,7 @@ from google_images_download import google_images_download
 # creating object 
 response = google_images_download.googleimagesdownload() 
 
-search_queries = ['Mickey','Minie','Pateta'] 
+search_queries = ['Cocô'] 
 
 
 def downloadimages(query): 
