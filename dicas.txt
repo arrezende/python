@@ -1,8 +1,13 @@
 #####
 git init #iniciar repositorio
+
+ou 
+
 git clone https://github.com/arrezende/python.git #clonar um repositorio
 git add 'arquivo' ou git add * #adiciona os arquivos para fazer o commit
 git commit -m 'mensagem' # commit das alterações com mensagem
+
+git pull #atualiza o repositorio local
 
 git reflog #exibe o log das modificacoes
 git checkout -b funcionalidade_x #cria um branch
