@@ -3,16 +3,12 @@
 print(iteration.encode('raw_unicode_escape').decode('utf-8'))
 into
 print(iteration.encode('raw_unicode_escape'))'''
-from google_images_download import google_images_download 
-import csv
-#html5lib
-from selenium import webdriver
-from urllib.request import urlopen
-from urllib.error import HTTPError
-from urllib.error import URLError
-from bs4 import BeautifulSoup
+import downloadImgGoogle
+import geraTitleDescription
+import varreUrl
+import renomearImg
 
-import os
+
 print('''
 ----------Coisas Úteis----------
 
@@ -62,110 +58,27 @@ print('[2] Buscar uma tag em uma URL')
 print('[3] Renomear imgs')
 escolha = int(input('Qual deseja? '))
 
-def downloadImgGoogle(key):
-	palavrasChave = key
-	resposta = google_images_download.googleimagesdownload() 
-	padrao = {"keywords": palavrasChave, 
-			"format": "jpg", 
-			"limit":4, 
-			"print_urls":False, 
-			"size": "medium",
-			"language": "Portuguese",
-			"aspect_ratio": "square"
-			} 
-	try: 
-		resposta.download(padrao)
-		
-	except FileNotFoundError: 
-		padrao = {"keywords": palavrasChave, 
-					"format": "jpg", 
-					"limit":4, 
-					"print_urls":False,
-					"language": "Portuguese", 
-					"size": "medium"} 
-					
-		# Providing padrao for the searched query 
-		try: 
-			# Downloading the photos based 
-			# on the given padrao 
-			resposta.download(padrao) 
-			
-		except: 
-			pass
-
-def openCsv(arquivo):
-	arquivoPhp = open('novo-arquivo.php', 'w')
-	arquivoPhp.write(str('<?php \n'))
-
-	with open(arquivo, mode='r') as arquivoCsv:
-		leitorCsv = csv.DictReader(arquivoCsv)
-		contadorDeLinha = 0
-		texto = []
-
-		for linha in leitorCsv:
-			if contadorDeLinha == 0:
-				contadorDeLinha +=1
-			#texto.append(str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION'])))
-			novoTexto = str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION']))
-			contadorDeLinha += 1
-			texto = str(texto).strip('[]')
-			arquivoPhp.write(novoTexto)
-			arquivoPhp.write('\n')		
-		print(str('Processado {} linhas').format(contadorDeLinha))
-	
-	arquivoPhp.write(str('\n?>'))
-	arquivoPhp.close()
-
-def varreUrl(url, tag):
-	
-    try:
-        html = urlopen(url)
-    except HTTPError as e:
-        print(e)
-    except URLError:
-        print("Server down or incorrect domain")
-    else:
-        res = BeautifulSoup(html.read(),"html5lib")
-        #tags = res.findAll("h1", {"class": "titulo-interno"})
-        tags = res.findAll(tag)
-        for tag in tags:
-            #print(tag.getText())
-            print(tag)
-
-def renomearImg():
-	sequenciaInicial = 1
-	novoNome = str(input('digite o novo nome das imagens: '))
-	print('Agora digite o endereço onde estão as imagens')
-	print('Atenção, é preciso que troque a barra por por /')
-	diretorio = input('Digite o endereço: ')
-
-	os.chdir(diretorio)
-	sequenciaInicial = 0
-	for arquivos in os.listdir():
-		if arquivos.endswith('.jpg') or arquivos.endswith('.png'): #verifica se os arquivos são png ou jpg
-			sequenciaInicial += 1
-			nome_arquivo, extensao_arquivo = os.path.splitext(arquivos) #separa a extensão do nome
-			novo_nome_do_arquivo = '{}-{}{}'.format(novoNome,sequenciaInicial,extensao_arquivo) #novo nome gerado
-			os.rename(arquivos, novo_nome_do_arquivo) #renomeia os arquivos
-	print('imagens renomeadas!!')
-
 if escolha == 0:
 	#Fazer o download das imagens
 	#Pede as palavras chave
 	palavrasChave = str(input('Digite as palavas-chave separadas por virgula: '))
 	palavrasChave = palavrasChave.split(',')
 	for palavras in palavrasChave: 
-		downloadImgGoogle(palavras)
+		downloadImgGoogle.download(palavras)
 		print() 
 
 elif escolha == 1:
 	#Gerar title, descripion
 	arquivo = input(str('Digite o nome do arquivo "teste.csv": '))
-	openCsv(arquivo)
+	if arquivo.endswith('.csv'):
+		arquivo = arquivo
+	else:
+		arquivo = str('{}.csv'.format(arquivo))
+	geraTitleDescription.openCsv(arquivo)
 elif escolha == 2:
 	url = input("Digite a url: ")
 	tag = input("Digite a tag: ")
-	varreUrl(url, tag)
+	varreUrl.url(url, tag)
 elif escolha == 3:
-	renomearImg()
+	renomearImg.renomear()
 print('Concluído')
