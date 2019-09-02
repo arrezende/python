@@ -7,8 +7,7 @@ def renomear():
 	print('Agora digite o endereço onde estão as imagens')
 	print('Atenção, é preciso que troque a barra por por /')
 	diretorio = input('Digite o endereço: ')
-
-	os.chdir(diretorio)
+	os.chdir(r'''{}'''.format(diretorio))
 	sequenciaInicial = 0
 	for arquivos in os.listdir():
 		if arquivos.endswith('.jpg') or arquivos.endswith('.png'): #verifica se os arquivos são png ou jpg
