@@ -7,6 +7,7 @@ import downloadImgGoogle
 import geraTitleDescription
 import varreUrl
 import renomearImg
+import minificarImg
 
 
 print('''
@@ -56,6 +57,7 @@ print('[0] Fazer download de imagens')
 print('[1] Gerar arquivo com TITLE, DESCRIPTION')
 print('[2] Buscar uma tag em uma URL')
 print('[3] Renomear imgs')
+print('[4] Renomear imgs')
 escolha = int(input('Qual deseja? '))
 
 if escolha == 0:
@@ -81,4 +83,6 @@ elif escolha == 2:
 	varreUrl.url(url, tag)
 elif escolha == 3:
 	renomearImg.renomear()
+elif escolha == 4:
+	minificarImg.compactar()
 print('Concluído')

@@ -1,11 +1,9 @@
 import os
 
-
 def renomear():
 	sequenciaInicial = 1
 	novoNome = str(input('digite o novo nome das imagens: '))
 	print('Agora digite o endereço onde estão as imagens')
-	print('Atenção, é preciso que troque a barra por por /')
 	diretorio = input('Digite o endereço: ')
 	os.chdir(r'''{}'''.format(diretorio))
 	sequenciaInicial = 0
