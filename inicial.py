@@ -57,7 +57,7 @@ print('[0] Fazer download de imagens')
 print('[1] Gerar arquivo com TITLE, DESCRIPTION')
 print('[2] Buscar uma tag em uma URL')
 print('[3] Renomear imgs')
-print('[4] Renomear imgs')
+print('[4] Compactar imgs')
 escolha = int(input('Qual deseja? '))
 
 if escolha == 0:
@@ -71,12 +71,12 @@ if escolha == 0:
 
 elif escolha == 1:
 	#Gerar title, descripion
-	arquivo = input(str('Digite o nome do arquivo "teste.csv": '))
-	if arquivo.endswith('.csv'):
+	arquivo = input(str('Digite o nome do arquivo "teste.xls(x)": '))
+	'''if arquivo.endswith('.xlsx'):
 		arquivo = arquivo
 	else:
-		arquivo = str('{}.csv'.format(arquivo))
-	geraTitleDescription.openCsv(arquivo)
+		arquivo = str('{}.xlsx'.format(arquivo))'''
+	geraTitleDescription.openExcel(arquivo)
 elif escolha == 2:
 	url = input("Digite a url: ")
 	tag = input("Digite a tag: ")
