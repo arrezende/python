@@ -8,48 +8,9 @@ import geraTitleDescription
 import varreUrl
 import renomearImg
 import minificarImg
+import desenho
 
-
-print('''
-----------Coisas Úteis----------
-
-              _.--""`-..
-            ,'          `.
-          ,'          __  `.
-         /|          " __   \\
-        , |           / |.   .
-        |,'          !_.'|   |
-      ,'             '   |   |
-     /              |`--'|   |
-    |                `---'   |
-     .   ,                   |                       ,".
-      ._     '           _'  |                    , ' \ `
-  `.. `.`-...___,...---""    |       __,.        ,`"   L,|
-  |, `- .`._        _,-,.'   .  __.-'-. /        .   ,    \\
--:..     `. `-..--_.,.<       `"      / `.        `-/ |   . |
-  `,         """"'     `.              ,'         |   |  ',,|
-    `.      '            '            /          '    |'. |/
-      `.   |              \       _,-'           |       ''
-        `._'               \   '"\                .      |
-           |                '     \                `._  ,'
-           |                 '     \                 .'|
-           |                 .      \                | |
-           |                 |       L              ,' |
-           `                 |       |             /   '
-            \                |       |           ,'   /
-          ,' \               |  _.._ ,-..___,..-'    ,'
-         /     .             .      `!             ,j'
-        /       `.          /        .           .'/
-       .          `.       /         |        _.'.'
-        `.          7`'---'          |------"'_.'
-       _,.`,_     _'                ,''-----"'
-   _,-_    '       `.     .'      ,\\
-   -" /`.         _,'     | _  _  _.|
-    ""--'---"""""'        `' '! |! /
-                            `" " -'
-
-
-''')
+desenho.principal()
 print('-=-'*30)
 print('Selecione a opção desejada:')
 
@@ -67,15 +28,10 @@ if escolha == 0:
 	palavrasChave = palavrasChave.split(',')
 	for palavras in palavrasChave: 
 		downloadImgGoogle.download(palavras)
-		print() 
 
 elif escolha == 1:
 	#Gerar title, descripion
 	arquivo = input(str('Digite o nome do arquivo "teste.xls(x)": '))
-	'''if arquivo.endswith('.xlsx'):
-		arquivo = arquivo
-	else:
-		arquivo = str('{}.xlsx'.format(arquivo))'''
 	geraTitleDescription.openExcel(arquivo)
 elif escolha == 2:
 	url = input("Digite a url: ")
