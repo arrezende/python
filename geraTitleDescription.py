@@ -1,25 +1,20 @@
-import csv
+# -*- coding: utf-8 -*-
+import pandas as pd
+def openExcel(arquivo):
+	x = pd.read_excel(arquivo, encoding = 'utf-8')
 
-
-def openCsv(arquivo):
-	arquivoPhp = open('novo-arquivo.php', 'w')
+	arquivoPhp = open('novo-arquivo.php', 'w', encoding='utf-8')
 	arquivoPhp.write(str('<?php \n'))
-    
-	with open(arquivo, mode='r') as arquivoCsv:
-		leitorCsv = csv.DictReader(arquivoCsv)
-		contadorDeLinha = 0
-		texto = []
+	texto = []
+	for i in x.index:
+		novoTexto = str('case "{}": $title= "{}"; $description = "{}"; break;'.format(x['URL'][i],x['H1'][i],x['DESCRIPTION'][i]))
+		
 
-		for linha in leitorCsv:
-			if contadorDeLinha == 0:
-				contadorDeLinha +=1
-			#texto.append(str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION'])))
-			novoTexto = str('case "{}": $title= "{}"; $description= "{}"; break;'.format(linha['URL'], linha['TITLE'], linha['DESCRIPTION']))
-			contadorDeLinha += 1
-			texto = str(texto).strip('[]')
-			arquivoPhp.write(novoTexto)
-			arquivoPhp.write('\n')		
-		print(str('Processado {} linhas').format(contadorDeLinha))
-	
+		texto = str(texto).strip('[]')
+		arquivoPhp.write(novoTexto)
+		arquivoPhp.write('\n')		
+	print(str('Processado {} linhas').format(i))
+		
 	arquivoPhp.write(str('\n?>'))
 	arquivoPhp.close()
+
