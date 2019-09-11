@@ -9,6 +9,7 @@ import varreUrl
 import renomearImg
 import minificarImg
 import desenho
+import geraPaginasSeo
 
 desenho.principal()
 print('-=-'*30)
@@ -19,6 +20,7 @@ print('[1] Gerar arquivo com TITLE, DESCRIPTION')
 print('[2] Buscar uma tag em uma URL')
 print('[3] Renomear imgs')
 print('[4] Compactar imgs')
+print('[5] Gerar Páginas de SEO')
 escolha = int(input('Qual deseja? '))
 
 if escolha == 0:
@@ -41,4 +43,8 @@ elif escolha == 3:
 	renomearImg.renomear()
 elif escolha == 4:
 	minificarImg.compactar()
+elif escolha == 5:
+	arquivo = input(str('Digite o nome do arquivo "teste.xls(x)": '))
+	geraPaginasSeo.criar(arquivo)
+
 print('Concluído')

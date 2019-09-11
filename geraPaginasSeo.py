@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
-def openExcel(arquivo):
+def criar(arquivo):
     x = pd.read_excel(arquivo, encoding = 'utf-8')
     for i in x.index:
         print(x['URL'][i])
         arquivoPhp = open('{}.php'.format(x['URL'][i]), 'w', encoding='utf-8')
         arquivoPhp.write(conteudoPadrao(x['H1'][i],x['URL'][i]))
-	#print(str('Processado {} linhas').format(i))
 def conteudoPadrao(titulo, url):
     txt = f'''<?php include 'inc/inc.seo.php'; ?>
 </head>
@@ -37,5 +36,3 @@ def conteudoPadrao(titulo, url):
 
 </html>'''
     return txt
-arquivo = 'izamar.xls'
-openExcel(arquivo)
